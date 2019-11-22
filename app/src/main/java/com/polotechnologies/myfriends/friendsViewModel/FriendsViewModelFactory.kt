@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.polotechnologies.myfriends.database.FriendsDatabaseDAO
 import java.lang.IllegalArgumentException
-import javax.sql.CommonDataSource
 
 class FriendsViewModelFactory(
     private val dataSource: FriendsDatabaseDAO,
