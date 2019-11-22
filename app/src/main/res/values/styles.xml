@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Widget.FAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="srcCompat">@drawable/ic_add_black_24dp</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
 </resources>

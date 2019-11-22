@@ -1,4 +1,4 @@
-package com.polotechnologies.myfriends
+package com.polotechnologies.myfriends.fragments
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.polotechnologies.myfriends.R
 
 /**
  * A simple [Fragment] subclass.
