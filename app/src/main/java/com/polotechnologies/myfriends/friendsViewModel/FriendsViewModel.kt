@@ -20,9 +20,8 @@ class FriendsViewModel(
     val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     val friends = database.getAllFriends()
 
-    fun startFriendship(){
+    fun startFriendship(newFriend: Friend){
         uiScope.launch {
-            val newFriend = Friend()
             insertFriend(newFriend)
         }
     }
@@ -34,10 +33,9 @@ class FriendsViewModel(
 
     }
 
-    fun updateFriendship(){
+    fun updateFriendship(friend: Friend){
         uiScope.launch {
-            val newFriend = Friend()
-            insertFriend(newFriend)
+            updateFriend(friend)
         }
     }
 

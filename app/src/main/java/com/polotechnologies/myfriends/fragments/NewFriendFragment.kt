@@ -6,19 +6,60 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import com.polotechnologies.myfriends.R
+import com.polotechnologies.myfriends.database.Friend
+import com.polotechnologies.myfriends.database.FriendsDatabase
+import com.polotechnologies.myfriends.databinding.FragmentNewFriendBinding
+import com.polotechnologies.myfriends.friendsViewModel.FriendsViewModel
+import com.polotechnologies.myfriends.friendsViewModel.FriendsViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
  */
 class NewFriendFragment : Fragment() {
 
+    lateinit var mBinding : FragmentNewFriendBinding
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_friend, container, false)
+        mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_new_friend, container, false )
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = FriendsDatabase.getInstance(application).friendsDatabaseDAO
+
+        val viewModelFactory = FriendsViewModelFactory(dataSource, application)
+
+        val friendsViewModel =
+            ViewModelProviders.of(
+                this,viewModelFactory).get(
+                FriendsViewModel::class.java
+            )
+
+        mBinding.btnSaveFriend.setOnClickListener{
+            createFriend(friendsViewModel)
+        }
+
+        return mBinding.root
+    }
+
+    private fun createFriend(friendsViewModel: FriendsViewModel) {
+
+        val friendFirstName = mBinding.etFirstName.text.toString()
+        val friendLastName = mBinding.etLastName.text.toString()
+        val friendRating = mBinding.rbFriend.rating
+
+        val friend = Friend(
+            0L,
+            friendFirstName,
+            friendLastName,
+            friendRating.toInt())
+
+        friendsViewModel.startFriendship(friend)
     }
 
 
