@@ -18,7 +18,9 @@ class FriendsViewModel(
     }
 
     val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     val friends = database.getAllFriends()
+
 
     fun startFriendship(newFriend: Friend){
         uiScope.launch {
@@ -44,5 +46,29 @@ class FriendsViewModel(
             database.updateFriend(friend)
         }
 
+    }
+
+    fun clearFriendship(){
+        uiScope.launch {
+            clearFriends()
+        }
+    }
+
+    private suspend fun clearFriends() {
+        withContext(Dispatchers.IO){
+            database.clearFriends()
+        }
+    }
+
+    fun deleteFriendship(friendId : Long){
+        uiScope.launch {
+            deleteFriend(friendId)
+        }
+    }
+
+    private suspend fun deleteFriend(friendId: Long) {
+        withContext(Dispatchers.IO){
+            database.deleteFriend(friendId)
+        }
     }
 }

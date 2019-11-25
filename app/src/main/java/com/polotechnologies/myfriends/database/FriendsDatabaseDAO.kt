@@ -1,10 +1,7 @@
 package com.polotechnologies.myfriends.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface FriendsDatabaseDAO {
@@ -18,10 +15,13 @@ interface FriendsDatabaseDAO {
     @Query("SELECT * FROM friends_table WHERE friendId = :key ")
     fun getFriend(key : Long) : Friend
 
-    @Query("SELECT * FROM friends_table ORDER BY friendId DESC")
+    @Query("SELECT * FROM friends_table ORDER BY friendId ASC")
     fun getAllFriends() : LiveData<List<Friend>>
 
-    @Query("SELECT * FROM friends_table ORDER BY friendId LIMIT 1")
-    fun getLatestFriend() : Friend?
+    @Query("DELETE FROM friends_table")
+    fun clearFriends()
+
+    @Query("DELETE FROM friends_table WHERE friendId = :key")
+    fun deleteFriend(key: Long)
 
 }

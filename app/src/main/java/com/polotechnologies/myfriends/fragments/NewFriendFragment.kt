@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Switch
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.polotechnologies.myfriends.R
 import com.polotechnologies.myfriends.database.Friend
 import com.polotechnologies.myfriends.database.FriendsDatabase
@@ -43,7 +46,7 @@ class NewFriendFragment : Fragment() {
         mBinding.btnSaveFriend.setOnClickListener{
             createFriend(friendsViewModel)
         }
-
+        
         return mBinding.root
     }
 
@@ -60,6 +63,7 @@ class NewFriendFragment : Fragment() {
             friendRating.toInt())
 
         friendsViewModel.startFriendship(friend)
+        findNavController().navigate(R.id.action_newFriendFragment_to_friendsListFragment)
     }
 
 

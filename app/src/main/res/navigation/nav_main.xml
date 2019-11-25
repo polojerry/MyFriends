@@ -18,5 +18,9 @@
         android:id="@+id/newFriendFragment"
         android:name="com.polotechnologies.myfriends.fragments.NewFriendFragment"
         android:label="fragment_new_friend"
-        tools:layout="@layout/fragment_new_friend" />
+        tools:layout="@layout/fragment_new_friend" >
+        <action
+            android:id="@+id/action_newFriendFragment_to_friendsListFragment"
+            app:destination="@id/friendsListFragment" />
+    </fragment>
 </navigation>
