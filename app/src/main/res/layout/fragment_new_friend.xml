@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.NewFriendFragment">
@@ -28,7 +28,7 @@
                     android:id="@+id/et_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="First Name"/>
+                    android:hint="First Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -60,6 +60,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_last_name" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Add Friend"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toStartOf="@+id/btnDeleteFriend"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rb_friend" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDeleteFriend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Delete Friend"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnSaveFriend"
+                app:layout_constraintTop_toBottomOf="@+id/rb_friend" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
