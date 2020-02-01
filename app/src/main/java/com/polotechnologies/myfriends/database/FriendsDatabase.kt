@@ -18,10 +18,7 @@ abstract class FriendsDatabase : RoomDatabase() {
         fun getInstance(context: Context) : FriendsDatabase{
 
             synchronized(this){
-
                 var instance = INSTANCE
-
-
                 if(instance == null){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
