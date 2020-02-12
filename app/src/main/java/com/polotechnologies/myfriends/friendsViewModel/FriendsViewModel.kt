@@ -13,9 +13,18 @@ class FriendsViewModel(val database: FriendsDatabaseDAO, application: Applicatio
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
+    val _friends = MutableLiveData<LiveData<List<Friend>>>()
+    val friends  : LiveData<List<Friend>>?
+    get() = _friends.value
 
-    val friends = database.getAllFriends()
 
+    init {
+        fetchFriends()
+    }
+
+    private fun fetchFriends() {
+        _friends.value = database.getAllFriends()
+    }
 
     fun startFriendship(newFriend: Friend) {
         uiScope.launch {

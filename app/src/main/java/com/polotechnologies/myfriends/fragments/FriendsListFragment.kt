@@ -3,15 +3,12 @@ package com.polotechnologies.myfriends.fragments
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.polotechnologies.myfriends.R
 import com.polotechnologies.myfriends.database.FriendsDatabase
 import com.polotechnologies.myfriends.databinding.FragmentFriendsListBinding
@@ -36,10 +33,7 @@ class FriendsListFragment : Fragment() {
 
         val viewModelFactory = FriendsViewModelFactory(dataSource, application)
 
-        val friendsViewModel =
-            ViewModelProviders.of(
-                this,viewModelFactory).get(FriendsViewModel::class.java
-            )
+        val friendsViewModel = ViewModelProvider(this,viewModelFactory).get(FriendsViewModel::class.java)
 
         mBinding.friendsViewModel = friendsViewModel
         mBinding.lifecycleOwner = this
@@ -47,9 +41,9 @@ class FriendsListFragment : Fragment() {
         val adapter = FriendsRecyclerAdapter()
         mBinding.rvFriends.adapter = adapter
 
-        friendsViewModel.friends.observe(viewLifecycleOwner, Observer {
+        friendsViewModel.friends?.observe(viewLifecycleOwner, Observer {
 
-            it?.let {
+            it.let {
                 adapter.friendsData = it
             }
         })
